@@ -1,0 +1,42 @@
+---
+import type { GetStaticPaths } from "astro";
+export const getStaticPaths = (( { paginate}) => {
+    const arrPersonajes= [
+        {personaje: "Jotaro Kujo"},
+        {personaje: "Joseph Joestar"},
+        {personaje: "Dio Brando"},
+        {personaje: "Giorno Giovanna"},
+        {personaje: "Jolyne Cujoh"},
+        {personaje: "Josuke Higashikata"},
+    ]
+    return paginate(arrPersonajes, {
+        pageSize: 4 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Página {page.currentPage}</h2>
+    <ul>
+        {page.data.map(({ personaje}) => (
+            <li>{personaje}</li>
+        ))}
+    </ul>
+    <div>
+        <p>{page.url.current}</p>
+        <p>{page.start}</p>
+        <p>{page.end}</p>
+        <p>{page.total}</p>
+        <a href={page.url.next}>Siguiente</a>
+        <a href={page.url.prev}>Anterior</a>
+    </div>
+</body>
+</html>

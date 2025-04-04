@@ -1,0 +1,27 @@
+---
+import type { GetStaticPaths } from "astro";
+export const getStaticPaths = (() => {
+    
+    return [
+        {params: { name: "document1", extension: "pdf" }},
+        {params: { name: "document2", extension: "docx" }},
+        {params: { name: "document3", extension: "txt" }},
+    ];
+}) satisfies GetStaticPaths;
+
+const { name, extension } = Astro.params;
+---
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>El fichero es {name}.{extension}</p>
+    
+</body>
+</html>
