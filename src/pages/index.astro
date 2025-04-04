@@ -1,12 +1,33 @@
 ---
 
-import Layout from '../layouts/Layout.astro';
+import MixLayout from '../layouts/MixLayout.astro';
 import NavBar from '../components/NavBar.astro';
 
 
 ---
 
-<Layout>
-	<h1>Main page</h1>
-	<NavBar />
-</Layout>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Home</title>
+	<script src="https://unpkg.com/htmx.org@2.0.4"></script>
+	
+</head>
+<body>
+	<MixLayout title="Home Page">
+
+
+		<h1>Home Page</h1>
+	</Layout>
+	
+	<NavBar/>
+
+	<ul hx-get="/partials/list" hx-trigger="load"></ul>
+
+	<div id="message-container">Target</div>
+	<button hx-post="/partials/message" hx-target="#message-container"
+	hx-swap="innerHTML">Pulse aquí</button>
+</body>
+</html>

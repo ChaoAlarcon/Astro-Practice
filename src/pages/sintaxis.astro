@@ -1,5 +1,9 @@
 ---
+import NavBar from "../components/NavBar.astro";
 const name = ["Juan", "Pedro", "Luis", "Ana", "Maria"];
+
+
+const ElementoPropio = NavBar;
 ---
 
 <!DOCTYPE html>
@@ -10,7 +14,9 @@ const name = ["Juan", "Pedro", "Luis", "Ana", "Maria"];
     <title>Document</title>
 </head>
 <body>
+    
     <h1>Nombre: {name}</h1>
+    <ElementoPropio/>
     <p id ={`identificador${name}`}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, consequatur!</p>
 
     {name.map((name) => (

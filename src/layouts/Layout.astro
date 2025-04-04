@@ -1,3 +1,10 @@
+---
+import NavBar from "../components/NavBar.astro"
+
+const {title} =Astro.props;
+
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,11 +12,14 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/ico.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Practice</title>
+		<title>{title}</title>
 	</head>
 	<body>
-		<h1>Astro Boy</h1>
+		<h1>{title}</h1>
+		<h1>Cabecera Principal</h1>
 		<slot />
+		<NavBar />
+		
 	</body>
 </html>
 
