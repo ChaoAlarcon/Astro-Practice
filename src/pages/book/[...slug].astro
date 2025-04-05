@@ -1,0 +1,39 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import { promise } from "astro:schema";
+
+export async function getStaticPaths() {
+  const bookCollection = await getCollection("book");
+
+  return bookCollection.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const {entry } = Astro.props;
+const {slug}= Astro.params;
+
+
+const{ Content}=await entry.render();
+
+const author = await getEntry(entry.data.author);
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{entry.data.title}</h1>
+    <img src={`../${entry.data.image}`} alt="">
+    <main>
+        <h2>Content</h2>
+        <Content/>
+    </main>
+    
+</body>
+</html>

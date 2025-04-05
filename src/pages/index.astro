@@ -3,6 +3,11 @@
 import MixLayout from '../layouts/MixLayout.astro';
 import NavBar from '../components/NavBar.astro';
 
+import { getCollection } from 'astro:content';
+
+const bookCollection = await getCollection("book");
+
+console.log(bookCollection);
 
 ---
 
@@ -29,5 +34,13 @@ import NavBar from '../components/NavBar.astro';
 	<div id="message-container">Target</div>
 	<button hx-post="/partials/message" hx-target="#message-container"
 	hx-swap="innerHTML">Pulse aquí</button>
+
+	<ul>
+		{bookCollection.map((book) => (
+			<li >
+				<a href={`/book/${book.slug}`}>{book.data.title}</a>
+			</li>
+		))}
+	</ul>
 </body>
 </html>
