@@ -6,7 +6,7 @@ const bookCollection = defineCollection({
         title: z.string(),
         description: z.string(),
         image: z.string(),
-        author: reference('authors'),
+        
     })
 
 });

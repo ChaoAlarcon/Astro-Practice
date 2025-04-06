@@ -3,6 +3,7 @@
 import MixLayout from '../layouts/MixLayout.astro';
 import NavBar from '../components/NavBar.astro';
 
+
 import { getCollection } from 'astro:content';
 
 const bookCollection = await getCollection("book");
@@ -22,16 +23,19 @@ console.log(bookCollection);
 </head>
 <body>
 	<MixLayout title="Home Page">
-
-
 		<h1>Home Page</h1>
 	</Layout>
 	
 	<NavBar/>
 
-	<ul hx-get="/partials/list" hx-trigger="load"></ul>
+	 Un partial de una lista que se carga al inicio 
 
+	<ul hx-get="/partials/list" hx-trigger="load"></ul>
+	
+	 Un partial que se carga al inicio al darle al botón
+	
 	<div id="message-container">Target</div>
+
 	<button hx-post="/partials/message" hx-target="#message-container"
 	hx-swap="innerHTML">Pulse aquí</button>
 
@@ -42,5 +46,7 @@ console.log(bookCollection);
 			</li>
 		))}
 	</ul>
+
+	
 </body>
 </html>
